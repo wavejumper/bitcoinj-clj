@@ -2,6 +2,10 @@
 
 A Clojure library designed to ... well, that part is up to you.
 
+## Setup
+
+1. [Build bitcoinj](https://code.google.com/p/bitcoinj/wiki/UsingMaven)
+
 ## Usage
 
 FIXME
