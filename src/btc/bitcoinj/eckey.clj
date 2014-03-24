@@ -1,13 +1,20 @@
 (ns btc.bitcoinj.eckey
   (:use [btc.utils]))
 
-(defn create [& [pub-key priv-key]]
-  (if (and (nil? pub-key) (nil? priv-key))
-    (com.google.bitcoin.core.ECKey. )
-    (if (nil? priv-key)
-      (com.google.bitcoin.core.ECKey. nil (parse-key pub-key))
-      (com.google.bitcoin.core.ECKey. (parse-key priv-key)
-                                      (parse-key pub-key)))))
+(defn create
+  ([] (com.google.bitcoin.core.ECKey. ))
+  ([pub-key] (com.google.bitcoin.core.ECKey. nil (parse-key pub-key)))
+  ([pub-key priv-key] (com.google.bitcoin.core.ECKey (parse-key priv-key)
+                                                     (parse-key pub-key))))
+
+(defn has-priv-key? [eckey]
+  (.hasPrivKey eckey))
+
+(defn get-pub-key [eckey]
+  (.getPubKey eckey))
+
+(defn get-pub-key-hash [eckey]
+  (.getPubKeyHash eckey))
 
 (defn is-compressed? [eckey]
   (.isCompressed eckey))
@@ -27,5 +34,5 @@
 (defn to-string [eckey]
   (.toString eckey))
 
-(defn to-address [eckey net]
-  (.toAddress (eckey) net))
+(defn eckey->address [eckey net]
+  (.toAddress eckey net))
