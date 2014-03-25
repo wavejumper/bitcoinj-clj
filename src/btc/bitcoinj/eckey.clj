@@ -1,11 +1,12 @@
 (ns btc.bitcoinj.eckey
-  (:use [btc.utils])
+  (:require [btc.utils :as utils])
   (:import com.google.bitcoin.core.ECKey))
 
 (defn create
   ([] (ECKey. ))
-  ([pub-key] (ECKey. nil (parse-key pub-key)))
-  ([pub-key priv-key] (ECKey. (parse-key priv-key) (parse-key pub-key))))
+  ([pub-key] (ECKey. nil (utils/parse-key pub-key)))
+  ([pub-key priv-key] (ECKey. (utils/parse-key priv-key)
+                              (utils/parse-key pub-key))))
 
 (defn has-priv-key? [eckey]
   (.hasPrivKey eckey))
@@ -31,8 +32,15 @@
 (defn verify-message [eckey message signature]
   (.verifyMessage eckey message signature))
 
-(defn to-string [eckey]
-  (.toString eckey))
+(defn ->map
+  "Parses ECKey toString method into Clojure map"
+  [eckey]
+  (utils/parse-eckey-string (.toString eckey)))
 
-(defn eckey->address [eckey net]
+(defn ->map-with-private
+  "Parses ECKey toStringPrivate method into Clojure map"
+  [eckey]
+  (utils/parse-eckey-string (.toString eckey)))
+
+(defn ->address [eckey net]
   (.toAddress eckey net))

@@ -3,5 +3,4 @@
 
 (defn create
   ([net blockstore] (BlockChain. net blockstore))
-  ([net wallet blockstore]
-     (BlockChain. net wallet blockstore)))
+  ([net wallet blockstore] (BlockChain. net wallet blockstore)))
