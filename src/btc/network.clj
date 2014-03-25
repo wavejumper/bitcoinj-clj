@@ -1,10 +1,13 @@
-(ns btc.network)
+(ns btc.network
+  (:import com.google.bitcoin.params.MainNetParams
+           com.google.bitcoin.params.TestNet2Params
+           com.google.bitcoin.params.TestNet3Params))
 
 (defn main-net []
-  (com.google.bitcoin.params.MainNetParams. ))
+  (MainNetParams. ))
 
 (defn test-net2 []
-  (com.google.bitcoin.params.TestNet2Params. ))
+  (TestNet2Params. ))
 
 (defn test-net3 []
-  (com.google.bitcoin.params.TestNet3Params. ))
+  (TestNet3Params. ))

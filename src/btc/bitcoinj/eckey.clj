@@ -1,11 +1,11 @@
 (ns btc.bitcoinj.eckey
-  (:use [btc.utils]))
+  (:use [btc.utils])
+  (:import com.google.bitcoin.core.ECKey))
 
 (defn create
-  ([] (com.google.bitcoin.core.ECKey. ))
-  ([pub-key] (com.google.bitcoin.core.ECKey. nil (parse-key pub-key)))
-  ([pub-key priv-key] (com.google.bitcoin.core.ECKey (parse-key priv-key)
-                                                     (parse-key pub-key))))
+  ([] (ECKey. ))
+  ([pub-key] (ECKey. nil (parse-key pub-key)))
+  ([pub-key priv-key] (ECKey. (parse-key priv-key) (parse-key pub-key))))
 
 (defn has-priv-key? [eckey]
   (.hasPrivKey eckey))

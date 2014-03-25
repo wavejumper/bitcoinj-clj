@@ -1,7 +1,8 @@
-(ns btc.bitcoinj.address)
+(ns btc.bitcoinj.address
+  (:import com.google.bitcoin.core.Address))
 
 (defn create [address net]
-  (com.google.bitcoin.core.Address. net address ))
+  (Address. net address))
 
 (defn to-string [address]
   (.toString address))
