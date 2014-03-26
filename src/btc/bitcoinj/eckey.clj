@@ -46,7 +46,7 @@
 (defn ->map-with-private
   "Parses ECKey toStringPrivate method into Clojure map"
   [eckey]
-  (utils/parse-eckey-string (.toString eckey)))
+  (utils/parse-eckey-string (.toStringWithPrivate eckey)))
 
 (defn ->address [eckey net]
   (.toAddress eckey net))
