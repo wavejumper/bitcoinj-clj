@@ -33,14 +33,14 @@
   (.verifyMessage eckey message signature))
 
 (defn ->map
-  "Parses ECKey toString method into Clojure map"
+  "Parses ECKey toString method into Clojure array-map"
   [eckey]
   (utils/parse-eckey-string (.toString eckey)))
 
 (defn ->map-with-private
-  "Parses ECKey toStringPrivate method into Clojure map"
+  "Parses ECKey toStringWithPrivate method into Clojure array-map"
   [eckey]
-  (utils/parse-eckey-string (.toString eckey)))
+  (utils/parse-eckey-string (.toStringWithPrivate eckey)))
 
 (defn ->address [eckey net]
   (.toAddress eckey net))

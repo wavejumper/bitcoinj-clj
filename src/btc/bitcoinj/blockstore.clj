@@ -20,3 +20,9 @@
 
 (defn close [blockstore]
   (.close blockstore))
+
+(defn get-stored-block
+  ([blockstore sha-256-hash] (.get blockstore sha-256-hash))
+  ([blockstore sha-256-hash undoable-only?] (.get blockstore
+                                                  sha-256-hash
+                                                  undoable-only?)))
