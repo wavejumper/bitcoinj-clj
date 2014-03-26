@@ -4,9 +4,8 @@
 
 (defn create
   ([] (ECKey. ))
-  ([pub-key] (ECKey. nil (utils/parse-key pub-key)))
-  ([pub-key priv-key] (ECKey. (utils/parse-key priv-key)
-                              (utils/parse-key pub-key))))
+  ([pub-key] (ECKey. nil priv-key))
+  (([pub-key priv-key] ECKey. priv-key pub-key)))
 
 (defn has-priv-key? [eckey]
   (.hasPrivKey eckey))
