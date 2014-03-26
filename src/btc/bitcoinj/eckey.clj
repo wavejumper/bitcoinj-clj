@@ -31,6 +31,13 @@
 (defn verify-message [eckey message signature]
   (.verifyMessage eckey message signature))
 
+(defn signed-message->eckey
+  "Given an arbitrary piece of text and a Bitcoin-format
+   message signature encoded in base64, returns an ECKey
+   containing the public key that was used to sign it."
+  [message signature]
+  (ECKey/signedMessageToKey message signature ))
+
 (defn ->map
   "Parses ECKey toString method into Clojure map"
   [eckey]
