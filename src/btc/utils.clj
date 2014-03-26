@@ -3,10 +3,9 @@
             [clojure.walk :as walk])
   (:import com.google.bitcoin.core.Utils))
 
-(defn parse-key
-  "Returns the Big Integer of the given parsed string"
-  [key]
-  (biginteger (Utils/parseAsHexOrBase58 key)))
+(defn parse-key [key] (Utils/parseAsHexOrBase58 key))
+
+(defn bytes->hex-string [b] (Utils/bytesToHexString b))
 
 (defn parse-eckey-string
   "Parses string in format 'a:b c:d' into array-map"

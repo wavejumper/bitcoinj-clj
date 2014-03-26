@@ -4,9 +4,8 @@
 
 (defn create
   ([] (ECKey. ))
-  ([pub-key] (ECKey. nil (utils/parse-key pub-key)))
-  ([pub-key priv-key] (ECKey. (utils/parse-key priv-key)
-                              (utils/parse-key pub-key))))
+  ([pub-key] (ECKey. nil pub-key))
+  ([pub-key priv-key] (ECKey. priv-key pub-key)))
 
 (defn has-priv-key? [eckey]
   (.hasPrivKey eckey))
@@ -31,6 +30,13 @@
 
 (defn verify-message [eckey message signature]
   (.verifyMessage eckey message signature))
+
+(defn signed-message->eckey
+  "Given an arbitrary piece of text and a Bitcoin-format
+   message signature encoded in base64, returns an ECKey
+   containing the public key that was used to sign it."
+  [message signature]
+  (ECKey/signedMessageToKey message signature ))
 
 (defn ->map
   "Parses ECKey toString method into Clojure array-map"
