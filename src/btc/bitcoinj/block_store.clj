@@ -1,4 +1,4 @@
-(ns btc.bitcoinj.blockstore
+(ns btc.bitcoinj.block-store
   (:import com.google.bitcoin.store.PostgresFullPrunedBlockStore
            com.google.bitcoin.store.H2FullPrunedBlockStore
            com.google.bitcoin.store.MemoryFullPrunedBlockStore))
@@ -18,11 +18,11 @@
   [net full-store-depth host db user pass]
   (PostgresFullPrunedBlockStore. net full-store-depth host db user pass))
 
-(defn close [blockstore]
-  (.close blockstore))
+(defn close [block-store]
+  (.close block-store))
 
 (defn get-stored-block
-  ([blockstore sha-256-hash] (.get blockstore sha-256-hash))
-  ([blockstore sha-256-hash undoable-only?] (.get blockstore
-                                                  sha-256-hash
-                                                  undoable-only?)))
+  ([block-store sha-256-hash] (.get block-store sha-256-hash))
+  ([block-store sha-256-hash undoable-only?] (.get block-store
+                                                   sha-256-hash
+                                                   undoable-only?)))
